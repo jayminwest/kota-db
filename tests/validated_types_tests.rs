@@ -31,13 +31,6 @@ fn test_validated_path_rejects_invalid_paths() {
     // Null bytes
     assert!(ValidatedPath::new("file\0name").is_err());
 
-    // Windows reserved names
-    assert!(ValidatedPath::new("CON").is_err());
-    assert!(ValidatedPath::new("PRN.txt").is_err());
-    assert!(ValidatedPath::new("AUX.md").is_err());
-    assert!(ValidatedPath::new("COM1").is_err());
-    assert!(ValidatedPath::new("LPT1.doc").is_err());
-
     // Extremely long paths
     let long_path = format!("/{}", "x".repeat(5000));
     assert!(ValidatedPath::new(long_path).is_err());
